@@ -1,17 +1,19 @@
 import { Router } from 'express';
-import { body } from 'express-validator';
+import { body, cookie } from 'express-validator';
 import bcrypt from 'bcrypt';
 
 // Controllers
 import register from '@/controllers/v1/auth/register';
 import login from '@/controllers/v1/auth/login';
+import refreshToken from '@/controllers/v1/auth/refresh_token';
+import logout from '@/controllers/v1/auth/logout';
 
 // Middlewares
 import validationError from '@/middlewares/validationError';
+import authenticate from '@/middlewares/authenticate';
 
 // Models
 import User from '@/models/user';
-import { brotliCompressSync } from 'zlib';
 
 const router = Router();
 
@@ -84,8 +86,21 @@ router.post(
   login,
 );
 
-// router.post(
-//   '/refresh-token',
-// )
+router.post(
+  '/refresh-token',
+  cookie('refreshToken')
+    .notEmpty()
+    .withMessage('Refresh token required')
+    .isJWT()
+    .withMessage('Invalid refresh token'),
+  validationError,
+  refreshToken,
+);
+
+router.post(
+  '/logout',
+  authenticate,
+  logout
+)
 
 export default router;
