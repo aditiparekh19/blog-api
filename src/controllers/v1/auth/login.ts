@@ -21,7 +21,7 @@ const login = async (req: Request, res: Response): Promise<void> => {
     if (!user) {
       res.status(404).json({
         code: 'NotFound',
-        message: 'Usernot found',
+        message: 'User not found',
       });
       return;
     }

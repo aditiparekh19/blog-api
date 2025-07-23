@@ -5,7 +5,6 @@ import { logger } from '@/lib/winston';
 
 import type { Request, Response, NextFunction } from 'express';
 import type { Types } from 'mongoose';
-import { error } from 'console';
 
 const authenticate = (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
@@ -34,7 +33,7 @@ const authenticate = (req: Request, res: Response, next: NextFunction) => {
     if (err instanceof TokenExpiredError) {
       res.status(401).json({
         code: 'AuthenticationError',
-        message: 'Access token expiired, request a new one with refresh token',
+        message: 'Access token expired, request a new one with refresh token',
       });
       return;
     }
