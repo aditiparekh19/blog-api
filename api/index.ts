@@ -1,5 +1,3 @@
-process.env.TS_NODE_PROJECT = './tsconfig.json';
-import 'tsconfig-paths/register';
 import 'module-alias/register';
 
 import app from '@/app';
@@ -13,7 +11,7 @@ export default async function handler(req: any, res: any) {
     try {
       await connectToDatabase();
       isConnected = true;
-      logger.info('Connected to DB');
+      logger.info('Connected to Database');
     } catch (err) {
       logger.error('Database connection failed', err);
       return res.status(500).send('Database connection failed');
