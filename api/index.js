@@ -19,16 +19,9 @@ const winston_1 = require("../src/lib/winston");
 let isConnected = false;
 const handler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!isConnected) {
-        try {
-            yield (0, mongoose_1.connectToDatabase)();
-            isConnected = true;
-            winston_1.logger.info('Connected to DB');
-        }
-        catch (err) {
-            winston_1.logger.error('Database connection failed', err);
-            res.statusCode = 500;
-            return res.end('Database connection failed');
-        }
+        yield (0, mongoose_1.connectToDatabase)();
+        isConnected = true;
+        winston_1.logger.info('Connected to DB');
     }
     const server = (0, http_1.createServer)(app_1.default);
     server.emit('request', req, res);
