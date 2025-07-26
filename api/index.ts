@@ -1,4 +1,7 @@
+process.env.TS_NODE_PROJECT = './tsconfig.json';
+import 'tsconfig-paths/register';
 import 'module-alias/register';
+
 import app from '@/app';
 import { connectToDatabase } from '@/lib/mongoose';
 import { logger } from '@/lib/winston';
