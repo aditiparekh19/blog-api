@@ -3,11 +3,10 @@
 import app from '../src/app';
 import { connectToDatabase } from '../src/lib/mongoose';
 import { logger } from '../src/lib/winston';
-import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 let isConnected = false;
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: any, res: any) {
   if (!isConnected) {
     try {
       await connectToDatabase();
@@ -20,6 +19,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   }
 
-  // Pass the request directly to Express
-  app(req, res);
+  app(req, res); // ✅ Just call the Express app directly
 }
