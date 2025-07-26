@@ -59,7 +59,7 @@ const uploadBlogBanner = (method: 'post' | 'put') => {
         height: data.height,
       };
       logger.info('Blog banner uploaded to Cloudnary', {
-        // blogId,
+        blogId,
         banner: newBanner,
       });
       req.body.banner = newBanner;
