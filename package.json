@@ -50,6 +50,6 @@
     "winston": "^3.17.0"
   },
   "_moduleAliases": {
-    "@": "src"
+    "@": "dist/src"
   }
 }
