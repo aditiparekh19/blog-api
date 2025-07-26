@@ -1,4 +1,5 @@
 import 'module-alias/register';
+import 'tsconfig-paths/register'; 
 import app from '@/app';
 import { connectToDatabase } from '@/lib/mongoose';
 import { logger } from '@/lib/winston';
