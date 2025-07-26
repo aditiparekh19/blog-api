@@ -1,20 +1,25 @@
 // api/index.ts
-import { createServer } from 'http';
+
 import app from '../src/app';
 import { connectToDatabase } from '../src/lib/mongoose';
 import { logger } from '../src/lib/winston';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 let isConnected = false;
 
-const handler = async (req: any, res: any) => {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!isConnected) {
-    await connectToDatabase();
-    isConnected = true;
-    logger.info('Connected to DB');
+    try {
+      await connectToDatabase();
+      isConnected = true;
+      logger.info('Connected to DB');
+    } catch (err) {
+      logger.error('Database connection failed', err);
+      res.status(500).send('Database connection failed');
+      return;
+    }
   }
 
-  const server = createServer(app);
-  server.emit('request', req, res);
-};
-
-export default handler;
+  // Pass the request directly to Express
+  app(req, res);
+}
