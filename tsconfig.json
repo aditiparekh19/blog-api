@@ -17,9 +17,7 @@
         },
         "typeRoots": ["./src/@types"]
     },
-    "include": [
-        "src/**/*"
-    ],
+    "include": ["src", "api"],
     "exclude": [
         "node_modules"
     ]
