@@ -1,5 +1,5 @@
 // api/index.ts
-
+import 'module-alias/register';
 import app from '../src/app';
 import { connectToDatabase } from '../src/lib/mongoose';
 import { logger } from '../src/lib/winston';
@@ -19,5 +19,5 @@ export default async function handler(req: any, res: any) {
     }
   }
 
-  app(req, res); // ✅ Just call the Express app directly
+  app(req, res);
 }
