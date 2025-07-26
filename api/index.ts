@@ -1,8 +1,7 @@
-// api/index.ts
 import 'module-alias/register';
-import app from '../src/app';
-import { connectToDatabase } from '../src/lib/mongoose';
-import { logger } from '../src/lib/winston';
+import app from '@/app';
+import { connectToDatabase } from '@/lib/mongoose';
+import { logger } from '@/lib/winston';
 
 let isConnected = false;
 
@@ -14,8 +13,7 @@ export default async function handler(req: any, res: any) {
       logger.info('Connected to DB');
     } catch (err) {
       logger.error('Database connection failed', err);
-      res.status(500).send('Database connection failed');
-      return;
+      return res.status(500).send('Database connection failed');
     }
   }
 
