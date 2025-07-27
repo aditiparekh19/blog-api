@@ -37,8 +37,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(compression({ threshold: 1024 }));
-// app.use(helmet());
-// app.use(limiter); // Disabled temporarily to debug 401 errors for API tools
+app.use(helmet());
+app.use(limiter);
 app.use('/api/v1', v1Routes);
 
 export default app;
