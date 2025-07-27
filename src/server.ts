@@ -15,8 +15,6 @@ import type { CorsOptions } from 'cors';
 
 const app = express();
 
-app.set('trust proxy', true);
-
 const corsOptions: CorsOptions = {
   origin(origin, callback) {
     if (
