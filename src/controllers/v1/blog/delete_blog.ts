@@ -1,9 +1,9 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-import Blog from '@/models/blog';
-import User from '@/models/user';
+import Blog from '../../../models/blog';
+import User from '../../../models/user';
 
-import { logger } from '@/lib/winston';
+import { logger } from '../../../lib/winston';
 
 import type { Request, Response } from 'express';
 

@@ -1,8 +1,8 @@
-import Blog from '@/models/blog';
-import User from '@/models/user';
-import Comment from '@/models/comment';
+import Blog from '../../../models/blog';
+import User from '../../../models/user';
+import Comment from '../../../models/comment';
 
-import { logger } from '@/lib/winston';
+import { logger } from '../../../lib/winston';
 
 import type { Request, Response } from 'express';
 

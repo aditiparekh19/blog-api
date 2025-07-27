@@ -1,6 +1,6 @@
 import { Schema, model, Types } from 'mongoose';
 
-import { genSlug } from '@/utils';
+import { genSlug } from '../utils';
 
 export interface IBlog {
   title: string;

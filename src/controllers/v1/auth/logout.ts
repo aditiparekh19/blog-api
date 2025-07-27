@@ -1,7 +1,7 @@
-import { logger } from '@/lib/winston';
-import config from '@/config';
+import { logger } from '../../../lib/winston';
+import config from '../../../config';
 
-import Token from '@/models/token';
+import Token from '../../../models/token';
 
 import type { Request, Response } from 'express';
 

@@ -1,7 +1,7 @@
-import { logger } from '@/lib/winston';
-import user from '@/models/user';
+import { logger } from '../lib/winston';
+import user from '../models/user';
 
-import User from '@/models/user';
+import User from '../models/user';
 
 import type { Request, Response, NextFunction } from 'express';
 

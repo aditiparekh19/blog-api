@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 
-import config from '@/config';
-import { logger } from '@/lib/winston';
+import config from '../config';
+import { logger } from './winston';
 
 import type { UploadApiResponse } from 'cloudinary';
 import { resolve } from 'path';

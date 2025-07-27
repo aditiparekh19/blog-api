@@ -3,17 +3,17 @@ import { body, cookie } from 'express-validator';
 import bcrypt from 'bcrypt';
 
 // Controllers
-import register from '@/controllers/v1/auth/register';
-import login from '@/controllers/v1/auth/login';
-import refreshToken from '@/controllers/v1/auth/refresh_token';
-import logout from '@/controllers/v1/auth/logout';
+import register from '../../controllers/v1/auth/register';
+import login from '../../controllers/v1/auth/login';
+import refreshToken from '../../controllers/v1/auth/refresh_token';
+import logout from '../../controllers/v1/auth/logout';
 
 // Middlewares
-import validationError from '@/middlewares/validationError';
-import authenticate from '@/middlewares/authenticate';
+import validationError from '../../middlewares/validationError';
+import authenticate from '../../middlewares/authenticate';
 
 // Models
-import User from '@/models/user';
+import User from '../../models/user';
 
 const router = Router();
 

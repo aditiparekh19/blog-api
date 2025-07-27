@@ -1,14 +1,14 @@
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 
-import Blog from '@/models/blog';
-import Comment from '@/models/comment';
+import Blog from '../../../models/blog';
+import Comment from '../../../models/comment';
 
-import { logger } from '@/lib/winston';
+import { logger } from '../../../lib/winston';
 
 import type { Request, Response } from 'express';
-import type { IComment } from '@/models/comment';
-import comment from '@/models/comment';
+import type { IComment } from '../../../models/comment';
+import comment from '../../../models/comment';
 
 type CommentData = Pick<IComment, 'content'>;
 

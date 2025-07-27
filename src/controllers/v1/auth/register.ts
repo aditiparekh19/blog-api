@@ -1,13 +1,13 @@
-import { generateAccessToken, generateRefreshToken } from '@/lib/jwt';
-import { logger } from '@/lib/winston';
-import config from '@/config';
-import { genUsername } from '@/utils';
+import { generateAccessToken, generateRefreshToken } from '../../../lib/jwt';
+import { logger } from '../../../lib/winston';
+import config from '../../../config';
+import { genUsername } from '../../../utils';
 
-import User from '@/models/user';
-import Token from '@/models/token';
+import User from '../../../models/user';
+import Token from '../../../models/token';
 
 import type { Request, Response } from 'express';
-import type { IUser } from '@/models/user';
+import type { IUser } from '../../../models/user';
 
 type UserData = Pick<IUser, 'email' | 'password' | 'role'>;
 

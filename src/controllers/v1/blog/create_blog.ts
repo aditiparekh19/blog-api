@@ -1,12 +1,12 @@
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 
-import Blog from '@/models/blog';
+import Blog from '../../../models/blog';
 
-import { logger } from '@/lib/winston';
+import { logger } from '../../../lib/winston';
 
 import type { Request, Response } from 'express';
-import type { IBlog } from '@/models/blog';
+import type { IBlog } from '../../../models/blog';
 
 type BlogData = Pick<IBlog, 'title' | 'content' | 'banner' | 'status'>;
 

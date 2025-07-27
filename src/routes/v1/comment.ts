@@ -2,14 +2,14 @@ import { Router } from 'express';
 import { body, param } from 'express-validator';
 
 // Controllers
-import commentBlog from '@/controllers/v1/comment/comment_blog';
-import deleteComment from '@/controllers/v1/comment/delete_comment';
-import getCommentsByBlog from '@/controllers/v1/comment/get_comments_by_blog';
+import commentBlog from '../../controllers/v1/comment/comment_blog';
+import deleteComment from '../../controllers/v1/comment/delete_comment';
+import getCommentsByBlog from '../../controllers/v1/comment/get_comments_by_blog';
 
 // Middlewares
-import validationError from '@/middlewares/validationError';
-import authenticate from '@/middlewares/authenticate';
-import authorize from '@/middlewares/authorize';
+import validationError from '../../middlewares/validationError';
+import authenticate from '../../middlewares/authenticate';
+import authorize from '../../middlewares/authorize';
 
 const router = Router();
 

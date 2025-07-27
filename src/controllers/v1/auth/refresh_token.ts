@@ -1,9 +1,9 @@
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
 
-import { generateAccessToken, verifyRefreshToken } from '@/lib/jwt';
-import { logger } from '@/lib/winston';
+import { generateAccessToken, verifyRefreshToken } from '../../../lib/jwt';
+import { logger } from '../../../lib/winston';
 
-import Token from '@/models/token';
+import Token from '../../../models/token';
 
 import type { Request, Response } from 'express';
 import { Types } from 'mongoose';

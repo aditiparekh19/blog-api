@@ -1,13 +1,13 @@
 import DOMPurify from 'dompurify';
 import { JSDOM } from 'jsdom';
 
-import Blog from '@/models/blog';
-import User from '@/models/user';
+import Blog from '../../../models/blog';
+import User from '../../../models/user';
 
-import { logger } from '@/lib/winston';
+import { logger } from '../../../lib/winston';
 
 import type { Request, Response } from 'express';
-import type { IBlog } from '@/models/blog';
+import type { IBlog } from '../../../models/blog';
 
 type BlogData = Partial<Pick<IBlog, 'title' | 'content' | 'banner' | 'status'>>;
 

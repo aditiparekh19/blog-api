@@ -1,6 +1,6 @@
 import winston from 'winston';
 
-import config from '@/config';
+import config from '../config';
 
 const { combine, timestamp, json, errors, align, printf, colorize } =
   winston.format;

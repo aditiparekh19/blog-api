@@ -1,7 +1,7 @@
-import Blog from '@/models/blog';
-import Like from '@/models/like';
+import Blog from '../../../models/blog';
+import Like from '../../../models/like';
 
-import { logger } from '@/lib/winston';
+import { logger } from '../../../lib/winston';
 
 import type { Request, Response } from 'express';
 

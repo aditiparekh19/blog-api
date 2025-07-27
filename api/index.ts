@@ -1,8 +1,6 @@
-import 'module-alias/register';
-
-import app from '@/app';
-import { connectToDatabase } from '@/lib/mongoose';
-import { logger } from '@/lib/winston';
+import app from '../src/app';
+import { connectToDatabase } from '../src/lib/mongoose';
+import { logger } from '../src/lib/winston';
 
 let isConnected = false;
 

@@ -4,12 +4,12 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 
-import config from '@/config';
-import limiter from '@/lib/express_rate_limit';
-import { connectToDatabase, disconnectFromDatabase } from "@/lib/mongoose";
-import { logger } from '@/lib/winston';
+import config from './config';
+import limiter from './lib/express_rate_limit';
+import { connectToDatabase, disconnectFromDatabase } from "./lib/mongoose";
+import { logger } from './lib/winston';
 
-import v1Routes from '@/routes/v1';
+import v1Routes from './routes/v1';
 
 import type { CorsOptions } from 'cors';
 
