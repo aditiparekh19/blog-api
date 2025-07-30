@@ -1,0 +1,233 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Blog API",
+    "version": "1.0.0",
+    "description": "API documentation for the Blog platform."
+  },
+  "servers": [
+    { "url": "http://localhost:3000/api/v1" },
+    { "url": "https://blog-api-theta-six.vercel.app/api/v1" }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "API root",
+        "description": "Returns API status and version.",
+        "responses": {
+          "200": {
+            "description": "API is live",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "status": { "type": "string" },
+                    "version": { "type": "string" },
+                    "timeStamp": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "summary": "Register a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" },
+                  "role": { "type": "string", "enum": ["admin", "user"] }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "User registered" },
+          "400": { "description": "Validation error" },
+          "403": { "description": "Admin registration not allowed" }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "summary": "Login user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "User logged in" },
+          "400": { "description": "Validation error" },
+          "404": { "description": "User not found" }
+        }
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "summary": "Refresh access token",
+        "responses": {
+          "200": { "description": "Token refreshed" },
+          "401": { "description": "Invalid or expired refresh token" }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Logout user",
+        "responses": {
+          "204": { "description": "User logged out" }
+        }
+      }
+    },
+    "/users/current": {
+      "get": { "summary": "Get current user", "responses": { "200": { "description": "Current user" } } },
+      "put": { "summary": "Update current user", "responses": { "200": { "description": "User updated" } } },
+      "delete": { "summary": "Delete current user", "responses": { "204": { "description": "User deleted" } } }
+    },
+    "/users": {
+      "get": { "summary": "Get all users", "responses": { "200": { "description": "List of users" } } }
+    },
+    "/users/{userId}": {
+      "get": {
+        "summary": "Get user by ID",
+        "parameters": [
+          { "name": "userId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "User found" },
+          "404": { "description": "User not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete user by ID",
+        "parameters": [
+          { "name": "userId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "User deleted" }
+        }
+      }
+    },
+    "/blogs": {
+      "post": { "summary": "Create blog", "responses": { "201": { "description": "Blog created" } } },
+      "get": { "summary": "Get all blogs", "responses": { "200": { "description": "List of blogs" } } }
+    },
+    "/blogs/user/{userId}": {
+      "get": {
+        "summary": "Get blogs by user",
+        "parameters": [
+          { "name": "userId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "List of user's blogs" }
+        }
+      }
+    },
+    "/blogs/{slug}": {
+      "get": {
+        "summary": "Get blog by slug",
+        "parameters": [
+          { "name": "slug", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Blog found" },
+          "404": { "description": "Blog not found" }
+        }
+      }
+    },
+    "/blogs/{blogId}": {
+      "put": {
+        "summary": "Update blog",
+        "parameters": [
+          { "name": "blogId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Blog updated" }
+        }
+      },
+      "delete": {
+        "summary": "Delete blog",
+        "parameters": [
+          { "name": "blogId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Blog deleted" }
+        }
+      }
+    },
+    "/likes/blog/{blogId}": {
+      "post": {
+        "summary": "Like a blog",
+        "parameters": [
+          { "name": "blogId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Blog liked" }
+        }
+      },
+      "delete": {
+        "summary": "Unlike a blog",
+        "parameters": [
+          { "name": "blogId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Blog unliked" }
+        }
+      }
+    },
+    "/comments/blog/{blogId}": {
+      "post": {
+        "summary": "Comment on a blog",
+        "parameters": [
+          { "name": "blogId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "201": { "description": "Comment created" }
+        }
+      },
+      "get": {
+        "summary": "Get comments for a blog",
+        "parameters": [
+          { "name": "blogId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "List of comments" }
+        }
+      }
+    },
+    "/comments/{commentId}": {
+      "delete": {
+        "summary": "Delete comment",
+        "parameters": [
+          { "name": "commentId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "204": { "description": "Comment deleted" }
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
+import fs from 'fs';
+import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 
 import config from './config';
 import limiter from './lib/express_rate_limit';
@@ -14,7 +17,6 @@ import v1Routes from './routes/v1';
 import type { CorsOptions } from 'cors';
 
 const app = express();
-
 app.set('trust proxy', 1);
 
 const corsOptions: CorsOptions = {
@@ -40,5 +42,9 @@ app.use(compression({ threshold: 1024 }));
 app.use(helmet());
 app.use(limiter);
 app.use('/api/v1', v1Routes);
+
+const swaggerPath = path.join(__dirname, 'docs', 'swagger.json');
+const swaggerDocument = JSON.parse(fs.readFileSync(swaggerPath, 'utf-8'));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;
