@@ -1,0 +1,1 @@
+// Swagger UI bundle JS placeholder

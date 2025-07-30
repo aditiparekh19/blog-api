@@ -1,0 +1,1 @@
+// Swagger UI standalone preset JS placeholder
