@@ -32,7 +32,8 @@ const corsOptions: CorsOptions = {
   },
 };
 
-app.use(express.static(path.join(__dirname,"public")));
+const publicPath = path.join(__dirname, '..', 'public');
+app.use('/api-docs', express.static(publicPath));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
