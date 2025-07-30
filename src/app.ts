@@ -42,8 +42,9 @@ app.use(helmet());
 app.use(limiter);
 app.use('/api/v1', v1Routes);
 
-const swaggerPath = path.join(process.cwd(), 'public', 'swagger.json');
-const swaggerDocument = JSON.parse(fs.readFileSync(swaggerPath, 'utf-8'));
+const swaggerDocument = JSON.parse(
+  fs.readFileSync(path.join(process.cwd(), 'public', 'swagger.json'), 'utf-8')
+);
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
