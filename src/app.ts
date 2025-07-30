@@ -1,13 +1,11 @@
-// src/app.ts
-
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
-import fs from 'fs';
-import path from 'path';
 import swaggerUi from 'swagger-ui-express';
+import path from 'path';
+import fs from 'fs';
 
 import config from './config';
 import limiter from './lib/express_rate_limit';
@@ -34,6 +32,7 @@ const corsOptions: CorsOptions = {
   },
 };
 
+app.use(express.static('public'));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -43,8 +42,9 @@ app.use(helmet());
 app.use(limiter);
 app.use('/api/v1', v1Routes);
 
-const swaggerPath = path.join(__dirname, 'docs', 'swagger.json');
+const swaggerPath = path.join(process.cwd(), 'public', 'swagger.json');
 const swaggerDocument = JSON.parse(fs.readFileSync(swaggerPath, 'utf-8'));
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 export default app;

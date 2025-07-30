@@ -3,6 +3,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import helmet from 'helmet';
+import swaggerUi from 'swagger-ui-express';
+import path from 'path';
+import fs from 'fs';
 
 import config from './config';
 import limiter from './lib/express_rate_limit';
@@ -53,6 +56,11 @@ app.use(helmet());
 
 // Apply rate limiting middleware to prevent excessive requests and enhance security.
 app.use(limiter);
+
+const swaggerPath = path.join(process.cwd(), 'public', 'swagger.json');
+const swaggerDocument = JSON.parse(fs.readFileSync(swaggerPath, 'utf-8'));
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /*
 Immediately Invoked Async Function Expresssion (IIFE) to start the server.

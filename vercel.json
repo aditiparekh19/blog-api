@@ -8,11 +8,13 @@
   ],
   "routes": [
     {
-      "src": "/api-docs/(.*\\.(js|css|png|html|map))",
-      "dest": "/api-docs/$1"
+      "src": "/api-docs",
+      "methods": ["GET"],
+      "dest": "api/index.ts"
     },
     {
-      "src": "/api-docs",
+      "src": "/api-docs/(.*)",
+      "methods": ["GET"],
       "dest": "api/index.ts"
     },
     {
