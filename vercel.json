@@ -16,8 +16,12 @@
       "dest": "api/index.ts"
     },
     {
+      "src": "/api-docs/(.*)",
+      "dest": "api/index.ts"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/public/index.html"
     }
   ]
 }
