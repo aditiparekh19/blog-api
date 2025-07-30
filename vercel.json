@@ -8,20 +8,13 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "api/index.ts"
-    },
-    {
       "src": "/api-docs",
-      "dest": "api/index.ts"
-    },
-    {
-      "src": "/api-docs/(.*)",
+      "methods": ["GET"],
       "dest": "api/index.ts"
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.html"
+      "dest": "api/index.ts"
     }
   ]
 }
